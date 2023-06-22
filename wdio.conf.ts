@@ -1,6 +1,7 @@
 import * as path from "path";
 import type { Options } from "@wdio/types";
 
+
 export const config: Options.Testrunner = {
   //
   // ====================
@@ -68,7 +69,8 @@ export const config: Options.Testrunner = {
       // capabilities for local Appium web tests on an Android Emulator
       platformName: "Android",
       "appium:deviceName": "AVD2",
-      "appium:app": path.join(process.cwd(), "app", "android", "app-debug.apk"),
+      "appium:app": path.join(process.cwd(), "app", "android", "app-debugTest.apk"),
+      "appium:fullReset": true,
       "appium:automationName": "UiAutomator2",
       // browserName: 'Chrome'
       // 'appium:platformVersion': '12.0', // or "16.2" (for running iOS v16)

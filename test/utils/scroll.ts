@@ -45,4 +45,3 @@ export const scrollUp = async()=>{
         'release'
     ])
 }
-
