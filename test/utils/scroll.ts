@@ -25,8 +25,8 @@ export const scrollDown = async()=>{
 export const tapByCoordinates = async() =>{
     await driver.touchAction({
         action:"tap",
-        x: 700,
-        y: 1700,
+        x: 60,
+        y: 1850,
     })
 }
 
@@ -37,7 +37,8 @@ export const scrollUp = async()=>{
 
     const startX = width / 2;
     const startY = height * 0.2;
-    const endY = height * 1.5;
+    const endY = height - 100;
+    //const endY = height * 0.09;
 
     await driver.touchAction([ //Scroll up(for xPath)
         { action: 'longPress', x: startX, y: startY },

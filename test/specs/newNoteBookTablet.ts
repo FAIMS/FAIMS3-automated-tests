@@ -1,5 +1,5 @@
 import {newNoteBookFixture} from "../../fixture/newNoteBook";
-import {tapByCoordinates} from "../utils/scroll";
+import {scrollDown, scrollUp, tapByCoordinates} from "../utils/scroll";
 import * as assert from "assert";
 import MenuFragment from "../../pages/MenuFragment";
 import NewNoteBookPage from "../../pages/NewNoteBookPage";
@@ -9,7 +9,7 @@ import SignInPage from "../../pages/SignInPage";
 import {userFixture} from "../../fixture/User";
 
 describe("Create New Note Book", () => {
-
+    if (driver.isAndroid){
     it("sign-in with pass", async () => {
         await MenuFragment.menuButtonClick()
 
@@ -21,24 +21,34 @@ describe("Create New Note Book", () => {
     });
 
     it("New noteBook", async () => {
-        await tapByCoordinates()
-        await NewNoteBookPage.projectNameSendValue(newNoteBookFixture.projectName)
+        await scrollDown()
 
+        await NewNoteBookPage.projectNameSendValue(newNoteBookFixture.projectName)
         await NewNoteBookPage.descriptionSendValue(newNoteBookFixture.desc)
         await NewNoteBookPage.leadSendValue(newNoteBookFixture.lead)
         await NewNoteBookPage.leadInstitutionSendValue(newNoteBookFixture.leadInstitiution)
+
         await NewNoteBookPage.goNextClick()
 
         await NewNoteBookPage.metaFieldSendValue(newNoteBookFixture.newMeta)
         await NewNoteBookPage.metaAddButtonClick()
+
+        await scrollDown()
+
         await NewNoteBookPage.goNextClick()
 
         await NewNoteBookPage.userRoleSendValue(newNoteBookFixture.newRole)
         await NewNoteBookPage.userAddButtonClick()
+
+        await scrollDown()
+
         await NewNoteBookPage.goNextClick()
 
         await NewNoteBookPage.attachFieldClick()
+        await NewNoteBookPage.imageSearchClick()
         await NewNoteBookPage.imageRootChoiceFile()
+
+        await scrollDown()
 
         await NewNoteBookPage.goNextIdButtonClick()
 
@@ -46,10 +56,14 @@ describe("Create New Note Book", () => {
         await NewNoteBookPage.inheritCheckBoxClick()
         await NewNoteBookPage.goNextIdButtonClick()
 
+
+        await scrollDown()
         await NewNoteBookPage.descriptionSectionSendValue('Some desc')
 
         await NewNoteBookPage.goNextIdButtonClick()
         await NewNoteBookPage.inputTextFieldSection()
+        await scrollUp()
+        await scrollUp()
 
         await NewNoteBookPage.submitButtonClick()
         await NewNoteBookPage.submitSaveButtonClick()
@@ -78,15 +92,12 @@ describe("Create New Note Book", () => {
     })
 
     it('New record page opened', async () => {
-        await MenuFragment.menuButtonClick()
-        await MenuFragment.projectNameFromNoteBookClick()
-        await MenuFragment.backMenuButtonClick()
-
         await NoteBookPage.newRecordButtonClick()
         // TODO impl when app was fixed
     })
 
     before(async function () {
+        if (!userFixture.isLocal){
         let name = this.test.parent.title
         const executorConfigName = {
             "action": "setSessionName",
@@ -94,20 +105,31 @@ describe("Create New Note Book", () => {
                 "name": name
             }
         };
-        await driver.execute('browserstack_executor: ' + JSON.stringify(executorConfigName));
+        await driver.execute('browserstack_executor: ' + JSON.stringify(executorConfigName));}
 
         const contexts = await driver.getContexts(); // get list of context
         await driver.switchContext(contexts[0].toString()); // set context to APP_NATIVE
         await WelcomePage.signInHomeButtonClick()
         await WelcomePage.signInButtonClick()
 
-        /*Fill data in userFixture*/
-        await SignInPage.usernameSendValue(userFixture.login)
-        await SignInPage.passwordSendValue(userFixture.pass)
-        await SignInPage.submitClick()
+        if (!userFixture.isLocal){
+            await WelcomePage.chromeChoseClick()
+            await WelcomePage.alwaysClick()
+        }
+
+        if (await WelcomePage.logOutButtonIsDisplayed(10000)){
+            await WelcomePage.logOutButtonClick()
+            await SignInPage.dataCenterClick()
+        }else {
+            await SignInPage.dataCenterClick()
+            await SignInPage.usernameSendValue(userFixture.login)
+            await SignInPage.passwordSendValue(userFixture.pass)
+            await SignInPage.continueClick()
+        }
     });
 
     after(async  function () {
+        if (!userFixture.isLocal){
         let state = this.currentTest.state
         const executorConfig = {
             "action": "setSessionStatus",
@@ -115,6 +137,7 @@ describe("Create New Note Book", () => {
                 "status": state
             },
         };
-        await driver.execute('browserstack_executor: ' + JSON.stringify(executorConfig));
+        await driver.execute('browserstack_executor: ' + JSON.stringify(executorConfig));}
     });
+    }
 });
