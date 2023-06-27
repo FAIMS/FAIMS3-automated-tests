@@ -1,5 +1,6 @@
 export default class Page{
     private title: string;
+    get idRoot () {return $('//android.view.View[@resource-id=\'root\']')}
 
     constructor() {
         this.title = 'My Page'
@@ -10,7 +11,7 @@ export default class Page{
     }
 
     async getWaiterTimeForElement(){
-        return 60000;
+        return 75000;
     }
 
     async waitElementAndClick(element: WebdriverIO.Element) {

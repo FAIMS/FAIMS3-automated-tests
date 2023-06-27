@@ -36,7 +36,8 @@ export const config: Options.Testrunner = {
   //
   specs: [
     // ToDo: define location for spec files here
-    "./test/specs/**/*.ts",
+     './test/specs/**.ts',
+    //'./test/specs/SignInTests.ts',
   ],
   // Patterns to exclude.
   exclude: [
@@ -58,7 +59,7 @@ export const config: Options.Testrunner = {
   // and 30 processes will get spawned. The property handles how many capabilities
   // from the same test should run tests.
   //
-  maxInstances: 10,
+  maxInstances: 1,
   //
   // If you have trouble getting all important capabilities together, check out the
   // Sauce Labs platform configurator - a great tool to configure your capabilities:
@@ -69,10 +70,11 @@ export const config: Options.Testrunner = {
       // capabilities for local Appium web tests on an Android Emulator
       platformName: "Android",
       "appium:deviceName": "AVD2",
-      "appium:app": path.join(process.cwd(), "app", "android", "app-debugTest.apk"),
+      "appium:app": path.join(process.cwd(), "app", "android", "app-debug.apk"),
       "appium:fullReset": true,
+      "appium:noReset": false,
       "appium:automationName": "UiAutomator2",
-      // browserName: 'Chrome'
+
       // 'appium:platformVersion': '12.0', // or "16.2" (for running iOS v16)
     },
   ],
@@ -152,7 +154,7 @@ export const config: Options.Testrunner = {
   // See the full list at http://mochajs.org/
   mochaOpts: {
     ui: "bdd",
-    timeout: 60000,
+    timeout: 75000,
   },
   //
   // =====

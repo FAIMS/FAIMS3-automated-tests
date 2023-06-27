@@ -17,15 +17,17 @@ class NewNoteBookPage extends Page{
 
     /*Attachment*/
     get attachField(){return $('//*[@resource-id=\'gotonext_info\']/../android.view.View[1]')}
-    get imageSearch(){return $('//*[@resource-id=\'com.google.android.documentsui:id/search_chip_group\']/android.widget.CompoundButton')}
-    get imageRoot() {return $('//*[@resource-id=\'com.google.android.documentsui:id/dir_list\']/*[1]')}
+    get imageSearch(){return $('//*[@text=\'Images\']')}
+    get imageRoot() {return $('//*[@resource-id=\'com.google.android.documentsui:id/dir_list\']/*')}
     get goNextIdButton() { return $('//*[@resource-id=\'gotonext_info\']')}
 
     /*Sections*/
     get checkBoxAccess(){return $('//*[@resource-id=\'formaccessinheritFORM1\']')}
     get descriptionSection(){return $('//*[@resource-id=\'sectiondescriptionFORM1SECTION1\']')}
+    get supportFooterText(){return $('//android.widget.TextView[@text=\'Support:\']')}
     get textFieldSection(){return $('//android.widget.Button[@text=\'Input field text plus special characters\']')}
     get submitButton(){return $('//*[@resource-id=\'primarytab-5\']')}
+    get formTabAccess(){return $('//*[@resource-id=\'formtab-0\']')}
     get submitSave(){return $('//*[@resource-id=\'submit_save\']')}
     get inputBoxMultipleSectionButton(){return $('//android.widget.Button[@text=\'Input Box Multiple line Input Box\']')}
     get selectSectionButton(){return $('//android.widget.Button[@text=\'Select Select one item\']')}
@@ -92,6 +94,16 @@ class NewNoteBookPage extends Page{
     async userAddButtonClick(){
         await this.addUserRolesButton.waitForDisplayed({timeout:await this.getWaiterTimeForElement()})
         await this.addUserRolesButton.click()
+    }
+
+    async supportTextClick(){
+        await this.supportFooterText.waitForDisplayed({timeout:await this.getWaiterTimeForElement()})
+        await this.supportFooterText.click()
+    }
+
+    async formTabClick(){
+        await this.formTabAccess.waitForDisplayed({timeout:await this.getWaiterTimeForElement()})
+        await this.formTabAccess.click()
     }
 
     async attachFieldClick(){
