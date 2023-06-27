@@ -46,13 +46,20 @@ in the capabilities array.
 
 ## Local Run
 
-Be sure you have one screenshot or image on emulator
+Be sure you have one screenshot or image on emulator.
 For local run you need to be sure appium was run, appium-doctor doesn't have any critical issues
 
-Appium - `appium-doctor`
+### Install `appium-doctor`
 
-Appium - run `appium -p 4723` (you can use all free ports but need to be sync
-with [wdio.conf.ts](wdio.conf.ts) port value)
+```bash
+npm install @appium/doctor --location=global
+```
+
+Running `appium-doctor` will check that your machine is set up properly for appium. 
+
+### Run Appium
+
+Appium - run `npm run appium`.
 
 File for run was described in [wdio.conf.ts](wdio.conf.ts) `appium:app`
 
