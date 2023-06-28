@@ -46,7 +46,6 @@ in the capabilities array.
 
 ## Local Run
 
-Be sure you have one screenshot or image on emulator.
 For local run you need to be sure appium was run, appium-doctor doesn't have any critical issues
 
 ### Install `appium-doctor`

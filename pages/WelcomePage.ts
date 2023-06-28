@@ -11,7 +11,8 @@ class WelcomePage extends Page{
 
     get signInButton () {return $('//android.widget.Button[@text=\'SIGN IN\']')}
     get returnAppButton () {return $('//*[@text=\'Return to App\']')}
-    get logOutAppButton () {return $('//android.view.View[@content-desc="Log Out of App "]')}
+    get logOutAppButton () {return $('//*[@text=\'Log Out of App \']')}
+    //get logOutAppButton () {return $('//android.view.View[@content-desc="Log Out of App "]')}
     get workspaceButton () {return $('//android.view.View[@content-desc="WORKSPACE"]')}
     get maximizeAppButton () {return $('//android.widget.Button[@content-desc="Maximize"]')}
 
