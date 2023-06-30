@@ -12,7 +12,7 @@ exports.config = {
         [
             'browserstack',
             {
-                app: 'bs://168b32756177ca33126733aecc9f87b1b1692f60',
+                app: 'bs://6517d3be01f0372fac56f67ef3581566581f84df',
                 buildIdentifier: "${BUILD_NUMBER}",
                 browserstackLocal: true,
                 interactiveDebugging: true,

@@ -113,11 +113,6 @@ describe("Create New Note Book", () => {
         await WelcomePage.signInHomeButtonClick()
         await WelcomePage.signInButtonClick()
 
-        if (!userFixture.isLocal){
-            await WelcomePage.chromeChoseClick()
-            await WelcomePage.alwaysClick()
-        }
-
         if (await WelcomePage.logOutButtonIsDisplayed(10000)){
             await WelcomePage.logOutButtonClick()
             await SignInPage.signInLocal()
