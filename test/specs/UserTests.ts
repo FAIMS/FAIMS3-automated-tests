@@ -61,23 +61,16 @@ describe("User suite", () => {
         await WelcomePage.signInHomeButtonClick()
         await WelcomePage.signInButtonClick()
 
-        if (!userFixture.isLocal){
-            await WelcomePage.chromeChoseClick()
-            await WelcomePage.alwaysClick()
-        }
-
         if (await WelcomePage.logOutButtonIsDisplayed(10000)){
             await WelcomePage.logOutButtonClick()
-            await SignInPage.dataCenterClick()
+            await SignInPage.signInLocal()
         }else {
-            await SignInPage.dataCenterClick()
-            await SignInPage.usernameSendValue(userFixture.login)
-            await SignInPage.passwordSendValue(userFixture.pass)
-            await SignInPage.continueClick()
+            await SignInPage.signInLocal()
         }
     });
 
     after(async function () {
+        await SignInPage.pushFileToDevice()
         if (!userFixture.isLocal){
         let state = this.currentTest.state
         const executorConfig = {

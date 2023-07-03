@@ -1,3 +1,6 @@
+import {readFileSync} from 'fs';
+import {join} from "path";
+
 export default class Page{
     private title: string;
     get idRoot () {return $('//android.view.View[@resource-id=\'root\']')}
@@ -12,6 +15,11 @@ export default class Page{
 
     async getWaiterTimeForElement(){
         return 75000;
+    }
+
+    async pushFileToDevice(){
+        const codingBot = readFileSync(join(process.cwd(), 'test/utils/sc1.png'), 'base64');
+        await driver.pushFile('/sdcard/Pictures/sc1.png', codingBot);
     }
 
     async waitElementAndClick(element: WebdriverIO.Element) {
