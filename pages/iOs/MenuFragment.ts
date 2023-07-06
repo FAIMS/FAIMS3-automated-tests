@@ -18,12 +18,17 @@ class MenuFragment extends Page {
     }
 
     get menuButtonNoteBooks() {
-        return $('//XCUIElementTypeLink[@name="Notebooks"]')
+        return $('//XCUIElementTypeButton[@name="Notebooks"]')
     }
 
     get menuButtonNewNotebook() {
         return $('//XCUIElementTypeLink[@name="New Notebook"]')
     }
+
+    get menuButtonUser() {
+        return $('//XCUIElementTypeLink[@name="User"]')
+    }
+
 
     async menuButtonClick() {
         await this.menuButton.waitForDisplayed({timeout: await this.getWaiterTimeForElement()})
@@ -53,6 +58,20 @@ class MenuFragment extends Page {
     async menuButtonNewNoteBookClick() {
         await this.menuButtonNewNotebook.waitForDisplayed({timeout: await this.getWaiterTimeForElement()})
         await this.menuButtonNewNotebook.click()
+    }
+
+    async menuButtonUserClick() {
+        await this.menuButtonUser.waitForDisplayed({timeout: await this.getWaiterTimeForElement()})
+        await this.menuButtonUser.click()
+    }
+
+    async menuFragmentIsDisplayed(time:number){
+        try{
+            await this.menuButtonHome.waitForDisplayed({timeout:time})
+            return await this.menuButtonHome.isDisplayed()
+        }catch (e){
+            return await this.menuButtonHome.isDisplayed()
+        }
     }
 
 }

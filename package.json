@@ -6,8 +6,8 @@
   "scripts": {
     "test": "wdio run ./wdio.conf.ts",
     "testBrowserStack": "wdio run test/bs.conf.ts --reporter mochawesome",
-    "testBsIos": "wdio run test/bsiOs.conf.ts --reporter mochawesome",
-    "testiOs": "wdio run test/localIos.conf.ts",
+    "testBsiOS": "wdio run test/bsiOs.conf.ts --reporter mochawesome",
+    "testiOS": "wdio run test/localIos.conf.ts",
     "wdio": "wdio run ./wdio.conf.ts",
     "appium": "appium -p 4723"
   },
@@ -33,6 +33,7 @@
   "dependencies": {
     "appium-uiautomator2-driver": "^2.24.0",
     "appium-webdriveragent": "^5.5.1",
+    "dotenv": "^16.3.1",
     "selenium-chrome-clear-cache": "^1.2.4"
   }
 }

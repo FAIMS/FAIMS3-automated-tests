@@ -61,6 +61,13 @@ describe("User suite", () => {
         await WelcomePage.signInHomeButtonClick()
         await WelcomePage.signInButtonClick()
 
+        if (!userFixture.isLocal){
+            if (await WelcomePage.webViewButtonIsDisplayed(3000)){
+                await WelcomePage.chromeChoseClick()
+                await WelcomePage.alwaysClick()
+            }
+        }
+
         if (await WelcomePage.logOutButtonIsDisplayed(10000)){
             await WelcomePage.logOutButtonClick()
             await SignInPage.signInLocal()

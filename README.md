@@ -3,7 +3,7 @@
 ## Preconditions
 
 * Fill User Fixture with your own Login and Password, choose isLocal(true,false) for 
-local and browserstack run [User.ts](fixture%2FUser.ts)
+local and browserstack run .env file (create in root project)
 
 * Fill BrowserStack Credential Android [bs.conf.ts](test%2Ffirst.conf.ts)
 * Fill BrowserStack Credential iOs [bsiOs.conf.ts](test%2FbsiOs.conf.ts)
@@ -31,15 +31,9 @@ in the capabilities array.
 
 ### iOs
 
-Can be managed on [bsiOs.conf.ts](test%2FbsiOs.conf.ts) just add 
-
+Can be managed on [.env](.env) just add 
 ```javascript
-'bstack:options': {
-    projectName: "FAIMS3",
-    deviceName: 'iPad Pro 11 2022',
-    platformVersion: '16',
-    platformName: 'ios',
-}
+DEVICE_NAME="iPad Pro 11 2022" or DEVICE_NAME="iPhone 14"
 ```
 
 in the capabilities array.

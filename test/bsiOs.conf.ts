@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 exports.config = {
     /*Put your user and key from browserstack*/
     user: process.env.BROWSERSTACK_USERNAME || '',
@@ -5,14 +7,14 @@ exports.config = {
     hostname: 'hub.browserstack.com',
     updateJob: false,
     specs: [
-        './specs/iOs/SignInTests.ts',
+        './specs/iOs/**.ts',
     ],
     exclude: [],
     services: [
         [
             'browserstack',
             {
-                app: 'bs://a80244008fa5951b0618bfd3de6887696599d00f',
+                app: process.env.IOS_APP_BS,
                 buildIdentifier: "${BUILD_NUMBER}",
                 browserstackLocal: true
             },
@@ -21,15 +23,8 @@ exports.config = {
     capabilities: [{
         'bstack:options': {
             projectName: "FAIMS3",
-            deviceName: 'iPad Pro 11 2022',
-            platformVersion: '16',
-            platformName: 'ios',
-        },
-    },{
-        'bstack:options': {
-            projectName: "FAIMS3",
-            deviceName: 'iPhone 14',
-            platformVersion: '16',
+            deviceName: process.env.DEVICE_NAME,
+            platformVersion: '16.4',
             platformName: 'ios',
         },
     }],
