@@ -9,7 +9,7 @@ import SignInPage from "../../pages/SignInPage";
 import {userFixture} from "../../fixture/User";
 
 describe("Create New Note Book", () => {
-    if (driver.isAndroid){
+
     it("sign-in with pass", async () => {
         await MenuFragment.menuButtonClick()
 
@@ -113,6 +113,13 @@ describe("Create New Note Book", () => {
         await WelcomePage.signInHomeButtonClick()
         await WelcomePage.signInButtonClick()
 
+        if (!userFixture.isLocal){
+            if (await WelcomePage.webViewButtonIsDisplayed(3000)){
+                await WelcomePage.chromeChoseClick()
+                await WelcomePage.alwaysClick()
+            }
+        }
+
         if (await WelcomePage.logOutButtonIsDisplayed(10000)){
             await WelcomePage.logOutButtonClick()
             await SignInPage.signInLocal()
@@ -132,5 +139,4 @@ describe("Create New Note Book", () => {
         };
         await driver.execute('browserstack_executor: ' + JSON.stringify(executorConfig));}
     });
-    }
 });

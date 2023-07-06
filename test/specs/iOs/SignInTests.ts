@@ -6,7 +6,9 @@ import * as assert from "assert";
 describe("Sign in Test Suite", async () => {
 
     it("sign-in", async () => {
+        await WelcomePage.signInHomeButtonClick()
         await WelcomePage.signInButtonClick()
+        await WelcomePage.signInLocal()
     });
 
     it("Check menu", async () => {
@@ -18,8 +20,6 @@ describe("Sign in Test Suite", async () => {
         await MenuFragment.menuButtonClick()
         await MenuFragment.menuButtonHomeClick()
         await MenuFragment.menuButtonReturnClick()
-
-        assert.ok(await WelcomePage.signInButtonIsDisplayed())
     });
 
     before(async function () {

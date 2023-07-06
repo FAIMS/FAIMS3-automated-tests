@@ -1,4 +1,5 @@
 //TODO investigate tablet scrolling , and scrollIntoView() on mobile
+const deviceName = process.env.DEVICE_NAME
 export const scrollDownMobileTabletCase = async()=>{
     await driver.touchAction([ //Scroll down(for xPath)
     { action: 'longPress', x: 1000, y: 1100 },
@@ -28,6 +29,29 @@ export const tapByCoordinates = async() =>{
         x: 60,
         y: 1850,
     })
+}
+
+export const tapByCoordinatesXY = async(x,y) =>{
+    await driver.touchAction({
+        action:"tap",
+        x: x,
+        y: y,
+    })
+}
+
+export const tapByCoordinatesIOS = async() =>{
+    await driver.touchAction({
+        action:"tap",
+        x: 400,
+        y: 960,
+    })
+    if (deviceName.includes("iPhone")){
+        await driver.touchAction({
+            action:"tap",
+            x: 190,
+            y: 620,
+        })
+    }
 }
 
 export const scrollUp = async()=>{

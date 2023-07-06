@@ -1,6 +1,6 @@
 import * as path from "path";
 import type { Options } from "@wdio/types";
-
+require('dotenv').config()
 
 export const config: Options.Testrunner = {
     //
@@ -35,8 +35,7 @@ export const config: Options.Testrunner = {
     // will be called from there.
     //
     specs: [
-        './specs/iOs/SignInTests.ts',
-        //'./test/specs/SignInTests.ts',
+        './specs/iOs/**.ts',
     ],
     // Patterns to exclude.
     exclude: [
@@ -68,7 +67,7 @@ export const config: Options.Testrunner = {
         {
             // capabilities for local Appium web tests on an Android Emulator
             platformName: "iOS",
-            "appium:deviceName": "iPad (10th generation)",
+            "appium:deviceName": process.env.DEVICE_NAME ,
             "appium:platformVersion":"16.4",
             "appium:app": path.join(process.cwd(), "app", "ios", "App.app"),
             "appium:automationName": "XCUITest",
