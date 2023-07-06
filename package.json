@@ -22,7 +22,7 @@
     "@wdio/mocha-framework": "^8.10.1",
     "@wdio/spec-reporter": "^8.10.1",
     "appium": "^2.0.0-rc.3",
-    "appium-xcuitest-driver": "^4.21.7",
+    "appium-xcuitest-driver": "^4.32.11",
     "browserstack-local": "^1.4.5",
     "chromedriver": "^113.0.0",
     "mochawesome": "^7.1.3",
